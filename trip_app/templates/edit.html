@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <title>Trip Planner</title>
+    {% load static %}
+    <link rel='stylesheet' href='{% static "style.css" %}'>
+</head>
+<body>
+    <div id='wrapper'>
+        <div id='header'>
+            <h1>Hello {{user.first_name}}, Edit your Trip's details</h1>
+            <a href='/dashboard'>Go Back</a>
+            <a href='/logout'>Logout</a>
+        </div>
+        <div id='errors'>
+            {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+        <div id = 'edit'>
+            <form action='/save/{{trip.id}}' method='POST'>
+                {% csrf_token %}
+                <label for='destination'>Destination</label>
+                <input type='text' name='destination' value ={{trip.destination}}>
+                <label for='start_date'>Start Date</label>
+                <input type='date' name='start_date' value = {{trip.start_date}}>
+                <label for="end_date">End Date</label>
+                <input type='date' name='end_date' value = {{trip.end_date}}>
+                <label for='plan'>Plan</label>
+                <textarea name='plan' cols='20' rows='10' value={{trip.plan}}></textarea>
+                <button type="submit" formaction="/dashboard">Go Back</button>
+                <button type=submit>Edit Trip</button>
+            </form>
+        </div>
+    </div>
+</body>

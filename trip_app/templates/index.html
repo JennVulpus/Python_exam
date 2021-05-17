@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <title>Trip Planner</title>
+    {% load static %}
+    <link rel='stylesheet' href='{% static "style.css" %}'>
+</head>
+<body>
+    <div id='wrapper'>
+        <div id = 'header'>
+            <h1>Welcome To Trip Planner!</h1>
+        </div>
+        <div id= main>
+        <div id = 'register'>
+            <h3>Register</h3>
+            <form action='/register' method='POST'>
+                {% csrf_token %}
+                <label for='first_name'>First Name</label>
+                <input type='text' name='first_name'>
+                <label for='last_name'>Last Name</label>
+                <input type='text' name='last_name'>
+                <label for='email'>Email</label>
+                <input type='text' name='email'>
+                <label for='password'>Password</label>
+                <input type='password' name='password'>
+                <label for='confirmpw'>Confirm PW</label>
+                <input type='password' name='confirmpw'>
+                <button type='submit'>Register</button>
+            </form>
+        </div>
+        <div id = 'login'>
+            <h3>Login</h3>
+            <form action='/login' method='POST'>
+                {% csrf_token %}
+                <label for="email">Email</label>
+                <input type='text' name='email'>
+                <label for="password">Password</label>
+                <input type="password" name="password">
+                <button type ='submit'>Login</button>
+            </form>
+        </div>
+        <div id='errors'>
+            {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </div>
+    </div>
+    </div>
+</body>

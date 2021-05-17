@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <title>Trip Planner</title>
+    {% load static %}
+    <link rel='stylesheet' href='{% static "style.css" %}'>
+</head>
+<body>
+    <div id='wrapper'>
+        <div id='header'>
+            <h1>Hello {{user.first_name}}</h1>
+            <a href='/logout'>Logout</a>
+            <form action='/add'>
+                <button>Create a new trip</button>
+            </form>
+        </div>
+        <div id = 'user_trips'>
+            <h3>Your Trips</h3>
+            <table>
+                <th>Destination</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Plan</th>
+                <th>Actions</th>
+                {% for owner in owners %}
+                    <tr>
+                        <td><a href='/details/{{owner.id}}'>{{owner.destination}}</a></td>
+                        <td>{{owner.start_date}}</td>
+                        <td>{{owner.end_date}}</td>
+                        <td>{{owner.plan}}</td>
+                        <td><a href = '/delete/{{owner.id}}'>Delete</a> | <a href='/edit/{{owner.id}}'>Edit</a></td>
+                    </tr>
+                {% endfor %}
+                {% for member in members %}
+                    <tr>
+                        <td>{{member.destination}}</td>
+                        <td>{{member.start_date}}</td>
+                        <td>{{member.end_date}}</td>
+                        <td>{{member.plan}}</td>
+                        <td><a href=/leave>Leave</a></td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+        <div id = 'other_trips'>
+            <h3>Other Trips</h3>
+            <table>
+                <th>Destination</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Plan</th>
+                <th>Actions</th>
+                {% for other in others %}
+                    <tr>
+                        <td>{{other.destination}}</td>
+                        <td>{{other.start_date}}</td>
+                        <td>{{other.end_date}}</td>
+                        <td>{{other.plan}}</td>
+                        <td><a href='#'>Join</a></td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</body>

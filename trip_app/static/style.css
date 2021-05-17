@@ -1,0 +1,39 @@
+*{
+    margin: 10px;
+}
+table,th,td{
+    border: 1px solid black;
+}
+#header{
+    display: flex;
+    align-content: space-evenly;
+}
+#main{
+    display: flex;
+}
+#register{
+    border: 1px solid black;
+    width: 25%;
+    align-items: center;
+    justify-items: center;
+}
+#login{
+    border: 1px solid black;
+    width:25%;
+    height:fit-content;
+    align-items:center;
+    justify-items: center;
+    height:fit-content;
+}
+#edit{
+    border: 1px solid black;
+    width: 15%;
+}
+#details{
+    width: fit-content;
+    border: 1px solid black;
+}
+#create{
+    border: 1px solid black;
+    width: 15%;
+}
